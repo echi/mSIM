@@ -1,4 +1,4 @@
-get.B.ridge <- function(Y, X, lambda=NULL){        ##岭回归，用于B矩阵的初始化
+get.B.ridge = function(Y, X, lambda=NULL){        ##岭回归，用于B矩阵的初始化
   # dim(B) = p*q; dim(Y) = n*q; dim(X) = n*p; length(lambda) = p
   n <- dim(Y)[1]
   q <- dim(Y)[2]
@@ -8,11 +8,11 @@ get.B.ridge <- function(Y, X, lambda=NULL){        ##岭回归，用于B矩阵�
   # ridge with CV
   for(j in 1:q){
     if(is.null(lambda)){
-      temp <- cv.glmnet(x <- X, y <- Y[,j], alpha <- 0)     ##广义线性回归
-      B[,j] <- coef(temp, s <- temp$lambda.min)[-1]
+      temp <- cv.glmnet(x=X, y=Y[,j], alpha=0)     ##广义线性回归
+      B[,j] <- coef(temp, s=temp$lambda.min)[-1]
     }else{
-      temp <- glmnet(x <- X, y <- Y[,j], alpha <- 0, lambda <- lambda)     ##广义线性回归
-      B[,j] = coef(temp, s <- temp$lambda.min)[-1]
+      temp <- glmnet(x=X, y=Y[,j], alpha=0, lambda=lambda)     ##广义线性回归
+      B[,j] <- coef(temp, s=temp$lambda.min)[-1]
     }
   }
 
@@ -21,21 +21,23 @@ get.B.ridge <- function(Y, X, lambda=NULL){        ##岭回归，用于B矩阵�
   return(B)
 }
 
+
 col.norm <- function(A){
   A <- apply(A, 2, function(x) x/norm(x, '2'))    #apply函数，将一个函数作用到array/matrix的margin(行或者列)
   return(A)
 }
 
+
 gcv.wrapper <- function(Y, X, P) {   #交叉验证法的某一个部分，具体什么部分不知道？
 
-  Lambda <- exp(seq(-10, 10, length <- 21))
+  Lambda <- exp(seq(-10, 10, length=21))
   K <- length(P)
   if (K == 1) {
     return(gcv.criteria(Y, X, crossprod(X), P[[1]], Lambda))
   }
   if (K > 1) {
-    List <- combn(length(Lambda),K-1)
-    fit_list <- list(length <- ncol(List))
+    List = combn(length(Lambda),K-1)
+    fit_list = list(length=ncol(List))
 
     B0 <- crossprod(X)
 
@@ -78,16 +80,16 @@ gcv.criteria <- function(Y, X, B, P, lambda) {   ##交叉验证衡量标准
   AtA <- t(A)%*%A
   AtA_diag <- diag(AtA)
 
-  EigenA <- eigen(AtA,symmetric <- TRUE)
+  EigenA <- eigen(AtA,symmetric=TRUE)
   EigenA$values <- sapply(EigenA$values, function(x) max(x, 1e-8))
 
 
   AtA_half <- EigenA$vectors%*%diag(sqrt(EigenA$values))%*%t(EigenA$vectors)
 
   gcv <- function(x){
-    d <- 1/(1 + x*s)
-    gcv <- sum((AtA_half%*%(AtY*d))^2) - 2*sum(AtY^2*d) + Y_square
-    gcv <- gcv/(1-sum(d*AtA_diag)/length(Y))^2
+    d = 1/(1 + x*s)
+    gcv = sum((AtA_half%*%(AtY*d))^2) - 2*sum(AtY^2*d) + Y_square
+    gcv = gcv/(1-sum(d*AtA_diag)/length(Y))^2
     gcv
   }
 
@@ -98,9 +100,9 @@ gcv.criteria <- function(Y, X, B, P, lambda) {   ##交叉验证衡量标准
   trace <- sum(AtA_diag*(1/(1+lambda.min*s)))
 
 
-  res <- list("lambda" <- lambda.min,
-             "trace" <- trace,
-             "gcv" <- gcv_list[index]
+  res <- list("lambda"=lambda.min,
+             "trace" = trace,
+             "gcv" = gcv_list[index]
   )
   return(res)
 }
