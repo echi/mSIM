@@ -107,3 +107,28 @@ gcv.criteria <- function(Y, X, B, P, lambda) {   ##交叉验证衡量标准
   return(res)
 }
 
+data_generate <- function(fun.list, n, p, B.true, snr, cor=0){   ##产生数据
+  l <- length(fun.list)
+  if(!cor){
+    x <- matrix(rnorm(n*p, 0, 1), n, p)
+  }else{
+    mu <- rep(0, p)  ##重复p次
+    Sigma <- diag(p)
+    Sigma <- cor^abs(row(Sigma)-col(Sigma))
+    x <- mvrnorm(n, mu, Sigma)    ##产生服从高斯分布的随机数
+  }
+  y.true <- matrix(,n,l)
+  y <- matrix(,n,l)
+
+  for(i in 1:l){
+    y.true[,i] <- fun.list[[i]](x%*%B.true[,i])   ## %*%矩阵乘法
+    sigma <- sqrt(var(y.true[,i]) / snr)
+    y[,i] <- y.true[,i] + sigma*rnorm(n)    ## y是有误差的label， y.true是无误差label
+  }
+
+  y.scaled <- scale(y)
+  y.true.scaled <- scale(y.true, center=attributes(y.scaled)$'scaled:center', scale=attributes(y.scaled)$'scaled:scale')   ##attributes添加属性关键字
+
+  return(list(y.scaled=y.scaled, y=y, y.true.scaled=y.true.scaled, y.true=y.true, x=x))
+}
+

@@ -1,3 +1,5 @@
+#' @export B.BIC
+
 B.BIC <- function(Y, X, B, tuning, linear=F){   ##贝叶斯信息准则
   n <- dim(Y)[1]
   q <- dim(Y)[2]

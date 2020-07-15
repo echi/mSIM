@@ -1,0 +1,8 @@
+citEntry(entry = "Article",
+@article{Feng2020,
+author = {Yuan Feng and Luo Xiao and Eric C. Chi},
+title = {Sparse Single Index Models for Multivariate Responses},
+journal = {Journal of Computational and Graphical Statistics},
+year  = {2020},
+doi = {10.1080/10618600.2020.1779080},
+})

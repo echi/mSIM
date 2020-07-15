@@ -1,5 +1,5 @@
 #' check the environment for necessary packages, and install the missing packages
-#'
+#' @export env_check
 #' @examples
 #' env_check()
 

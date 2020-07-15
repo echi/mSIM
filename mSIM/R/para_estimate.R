@@ -91,8 +91,8 @@ bfgs.descent <- function(y, x, beta, alpha, h0, omega1, omega2, omega3, eta, ksi
     return( norm(f0-y, '2')^2/(2*n) - crossprod(omega1+omega2+omega3, beta) + alpha*(norm(beta - eta, '2')^2 + norm(beta - ksi, '2')^2 + norm(beta - delta, '2')^2)/2)
   }
 
-  output <- optim(beta, obj, grad, method='BFGS')
-  #output = lbfgs(obj, grad, beta, invisible=T, epsilon=1e-4)
+  #output <- optim(beta, obj, grad, method='L-BFGS-B', control = list(lmm = 3))
+  output <- lbfgs(obj, grad, beta, invisible=T, epsilon=1e-4)
 
   return(list(beta=output$par, converge=output$convergence, obj=output$value))
 }
