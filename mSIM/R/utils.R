@@ -1,3 +1,5 @@
+#' @export data_generate
+
 get.B.ridge = function(Y, X, lambda=NULL){        ##岭回归，用于B矩阵的初始化
   # dim(B) = p*q; dim(Y) = n*q; dim(X) = n*p; length(lambda) = p
   n <- dim(Y)[1]

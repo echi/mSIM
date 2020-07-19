@@ -1,6 +1,6 @@
-#' @export B.BIC
+#' @export B_BIC
 
-B.BIC <- function(Y, X, B, tuning, linear=F){   ##贝叶斯信息准则
+B_BIC <- function(Y, X, B, tuning, linear=F){   ##贝叶斯信息准则
   n <- dim(Y)[1]
   q <- dim(Y)[2]
   p <- dim(B)[1]
@@ -18,14 +18,11 @@ B.BIC <- function(Y, X, B, tuning, linear=F){   ##贝叶斯信息准则
     }
   }
 
-  df <- B.df(X, B, tuning)
   df.nai <- B.df.nai(X, B, tuning)
-  logSSE <- log(SSE / (n*q))
-  AIC <- logSSE + df * 2 / (n*q)
-  BIC <- logSSE + df * log(n*q) / (n*q)
-  BIC.nai <- logSSE + df.nai * log(n*q) / (n*q)
+  logMSE <- log(SSE / (n*q))
+  BIC.nai <- logMSE + df.nai * log(n*q) / (n*q)
 
-  return(c(logSSE = logSSE, AIC = AIC, BIC = BIC, BIC.nai = BIC.nai, df = df, df.nai = df.nai))
+  return(c(logMSE = logMSE, BIC.nai = BIC.nai, df.nai = df.nai))
 }
 
 B.df <- function(X, B, tuning){    ##自由度估计

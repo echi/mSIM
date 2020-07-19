@@ -1,8 +1,18 @@
+citHeader("To cite mSIM in publications use:")
+
 citEntry(entry = "Article",
-@article{Feng2020,
-author = {Yuan Feng and Luo Xiao and Eric C. Chi},
-title = {Sparse Single Index Models for Multivariate Responses},
-journal = {Journal of Computational and Graphical Statistics},
-year  = {2020},
-doi = {10.1080/10618600.2020.1779080},
-})
+key = "Feng2020",
+author = personList(as.person("Yuan Feng"),
+                   as.person("Luo Xiao"),
+                   as.person("Eric C. Chi")),
+title = "Sparse Single Index Models for Multivariate Responses",
+journal = "Journal of Computational and Graphical Statistics",
+year  = "2020",
+doi = "10.1080/10618600.2020.1779080",
+
+textVersion  =
+  paste("Yuan Feng, Luo Xiao, and Eric C. Chi,",
+        "Sparse Single Index Models for Multivariate Responses,",
+        "Journal of Computational and Graphical Statistics,",
+        "2020.")
+)

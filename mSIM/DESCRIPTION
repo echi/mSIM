@@ -8,8 +8,12 @@ Author: c(
   person("Luo", "Xiao", email = "lxiao5@ncsu.edu", role = "aut"),
   person("Eric", "Chi", email = "eric_chi@ncsu.edu", role = "aut"))
 Maintainer: Zirui Li<LZRsuper666@tju.edu.cn>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: A package for multivariate response single index model, developed by
+  Zirui Li. This package implement the two step iterated optimization process in
+  paper "Sparse Single Index Models for Multivariate Responses". The package provides
+  functions for parameter estimation, parameter selection and prediction for users. 
+  The optimization process is fast and memory efficient, and is suitable for
+  high dimensional data.
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
@@ -24,5 +28,10 @@ Imports:
   splines,
   lbfgs
 Suggests:
-  doSNOW
+    doSNOW,
+    knitr,
+    rmarkdown
 RoxygenNote: 7.1.1
+VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)
