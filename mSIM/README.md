@@ -28,7 +28,7 @@ The current working version can be installed from Github:
 
 ``` r
 library(devtools)
-install_github("ecchi/mSIM")
+install_github("echi/mSIM")
 ```
 
 ## Example
