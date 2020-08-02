@@ -14,7 +14,7 @@ Description: A package for multivariate response single index model, developed b
   functions for parameter estimation, parameter selection and prediction for users. 
   The optimization process is fast and memory efficient, and is suitable for
   high dimensional data.
-License: GPL-2
+License: GPL(>=2)
 Encoding: UTF-8
 LazyData: true
 Imports: 
