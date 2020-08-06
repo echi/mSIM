@@ -1,4 +1,4 @@
-pspline.gam = function(y, x, bs="ps", k=7, knots.option="equally-spaced", lambda=NULL) {   ##样条插值的具体算法
+pspline.gam = function(y, x, bs="ps", k=7, knots.option="equally-spaced", lambda=NULL) {
 
   data <- data.frame("x" = x)
   s.object <- s(x, bs=bs, k = k, sp=lambda)
@@ -44,7 +44,7 @@ rank.norm <- function(A, rank){
 }
 
 
-si.smooth <- function(y, x, beta, k=7) {    ##样条插值
+si.smooth <- function(y, x, beta, k=7) {
   #beta = beta/sqrt(sum(beta^2))
   u <- x%*%beta
   #fit = pspline.gam(y, u, k=k)
@@ -53,7 +53,7 @@ si.smooth <- function(y, x, beta, k=7) {    ##样条插值
 }
 
 
-si.h <- function(fit) {      ##这个函数是干什么的？
+si.h <- function(fit) {
 
   stopifnot(class(fit)=="pspline.gam")
 
@@ -97,7 +97,7 @@ bfgs.descent <- function(y, x, beta, alpha, h0, omega1, omega2, omega3, eta, ksi
   return(list(beta=output$par, converge=output$convergence, obj=output$value))
 }
 
-grad.descent <- function(y, x, beta, alpha, control=list(max.iter=1e3, tol=1e-3, stepsize=1e-3), h0, omega1, omega2, eta, ksi){  ##梯度下降
+grad.descent <- function(y, x, beta, alpha, control=list(max.iter=1e3, tol=1e-3, stepsize=1e-3), h0, omega1, omega2, eta, ksi){
   n <- dim(x)[1]
   p <- dim(x)[2]
   n.iter <- 1

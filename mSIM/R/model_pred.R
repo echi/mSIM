@@ -11,7 +11,7 @@
 #' @examples
 #' pred = predict(Y = Y, X = X, real.MSIM$B.sparse, Y.true = Y.true, X.pred = X.pred)
 
-model_pred = function(Y, X, B, Y.true, X.pred){     ##预测函数
+model_pred = function(Y, X, B, Y.true, X.pred){
   Y.pred = matrix(, dim(X.pred)[1], dim(B)[2])
   for(j in 1:dim(B)[2]){
     beta = B[,j]

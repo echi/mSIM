@@ -1,6 +1,6 @@
 #' @export data_generate
 
-get.B.ridge = function(Y, X, lambda=NULL){        ##岭回归，用于B矩阵的初始化
+get.B.ridge = function(Y, X, lambda=NULL){
   # dim(B) = p*q; dim(Y) = n*q; dim(X) = n*p; length(lambda) = p
   n <- dim(Y)[1]
   q <- dim(Y)[2]
@@ -10,10 +10,10 @@ get.B.ridge = function(Y, X, lambda=NULL){        ##岭回归，用于B矩阵的
   # ridge with CV
   for(j in 1:q){
     if(is.null(lambda)){
-      temp <- cv.glmnet(x=X, y=Y[,j], alpha=0)     ##广义线性回归
+      temp <- cv.glmnet(x=X, y=Y[,j], alpha=0)
       B[,j] <- coef(temp, s=temp$lambda.min)[-1]
     }else{
-      temp <- glmnet(x=X, y=Y[,j], alpha=0, lambda=lambda)     ##广义线性回归
+      temp <- glmnet(x=X, y=Y[,j], alpha=0, lambda=lambda)
       B[,j] <- coef(temp, s=temp$lambda.min)[-1]
     }
   }
@@ -25,12 +25,12 @@ get.B.ridge = function(Y, X, lambda=NULL){        ##岭回归，用于B矩阵的
 
 
 col.norm <- function(A){
-  A <- apply(A, 2, function(x) x/norm(x, '2'))    #apply函数，将一个函数作用到array/matrix的margin(行或者列)
+  A <- apply(A, 2, function(x) x/norm(x, '2'))
   return(A)
 }
 
 
-gcv.wrapper <- function(Y, X, P) {   #交叉验证法的某一个部分，具体什么部分不知道？
+gcv.wrapper <- function(Y, X, P) {
 
   Lambda <- exp(seq(-10, 10, length=21))
   K <- length(P)
@@ -63,10 +63,10 @@ gcv.wrapper <- function(Y, X, P) {   #交叉验证法的某一个部分，具体
   }
 }
 
-gcv.criteria <- function(Y, X, B, P, lambda) {   ##交叉验证衡量标准
+gcv.criteria <- function(Y, X, B, P, lambda) {
 
   EigenB <- eigen(B)
-  EigenB$values <- sapply(EigenB$values, function(x) max(x, 1e-8))   ##作用与apply相同，将结果整理以向量，矩阵，列表 的形式输出
+  EigenB$values <- sapply(EigenB$values, function(x) max(x, 1e-8))
   B_inv_half <- EigenB$vectors%*%diag(sqrt(1/EigenB$values))%*%t(EigenB$vectors)
 
   S <- B_inv_half%*%P%*%B_inv_half
@@ -109,27 +109,27 @@ gcv.criteria <- function(Y, X, B, P, lambda) {   ##交叉验证衡量标准
   return(res)
 }
 
-data_generate <- function(fun.list, n, p, B.true, snr, cor=0){   ##产生数据
+data_generate <- function(fun.list, n, p, B.true, snr, cor=0){
   l <- length(fun.list)
   if(!cor){
     x <- matrix(rnorm(n*p, 0, 1), n, p)
   }else{
-    mu <- rep(0, p)  ##重复p次
+    mu <- rep(0, p)
     Sigma <- diag(p)
     Sigma <- cor^abs(row(Sigma)-col(Sigma))
-    x <- mvrnorm(n, mu, Sigma)    ##产生服从高斯分布的随机数
+    x <- mvrnorm(n, mu, Sigma)
   }
   y.true <- matrix(,n,l)
   y <- matrix(,n,l)
 
   for(i in 1:l){
-    y.true[,i] <- fun.list[[i]](x%*%B.true[,i])   ## %*%矩阵乘法
+    y.true[,i] <- fun.list[[i]](x%*%B.true[,i])
     sigma <- sqrt(var(y.true[,i]) / snr)
-    y[,i] <- y.true[,i] + sigma*rnorm(n)    ## y是有误差的label， y.true是无误差label
+    y[,i] <- y.true[,i] + sigma*rnorm(n)
   }
 
   y.scaled <- scale(y)
-  y.true.scaled <- scale(y.true, center=attributes(y.scaled)$'scaled:center', scale=attributes(y.scaled)$'scaled:scale')   ##attributes添加属性关键字
+  y.true.scaled <- scale(y.true, center=attributes(y.scaled)$'scaled:center', scale=attributes(y.scaled)$'scaled:scale')
 
   return(list(y.scaled=y.scaled, y=y, y.true.scaled=y.true.scaled, y.true=y.true, x=x))
 }
