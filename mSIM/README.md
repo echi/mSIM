@@ -8,7 +8,7 @@
 
 <!-- badges: end -->
 
-This package implements the Multivariate Single index Model(`mSIM`)
+This package implements the Multivariate Single Index Model(`mSIM`)
 proposed by Feng et al. It can be formulated as following:
 
 \(\mathbf{y}_{i}=\left\{f_{1}\left(\mathbf{x}_{i}^{\top} \mathbf{B}_{1}\right), \cdots, f_{q}\left(\mathbf{x}_{i}^{\top} \mathbf{B}_{\cdot q}\right)\right\}^{\top}+\boldsymbol{\epsilon}_{i}\)
