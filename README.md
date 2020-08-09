@@ -94,7 +94,8 @@ for(i in 1:length(tuning)){
     
     School of Electrical and Information Engineering, Tianjin University
 
-  - \[Yuan Feng\]
+  - Yuan Feng
+    Walmart eCommerce
 
   - [Luo Xiao](https://www4.stat.ncsu.edu/~xiao/)
     
@@ -109,3 +110,7 @@ for(i in 1:length(tuning)){
 Yuan Feng, Luo Xiao, and Eric C. Chi, Sparse Single Index Models for
 Multivariate Responses, Journal of Computational and Graphical
 Statistics, 2020.
+
+## Notes
+
+This R package is follow up work to the JCGS paper by Zirui Li under the guidance of Eric Chi through the [NCSU GEARS program](https://gti.ncsu.edu/gears/).
