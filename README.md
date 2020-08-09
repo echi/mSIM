@@ -113,4 +113,4 @@ Statistics, 2020.
 
 ## Notes
 
-This R package is by Zirui Li based on code for the JCGS paper.  Zirui worked on this through the [NCSU GEARS program](https://gti.ncsu.edu/gears/ with Eric Chi as his mentor.
+This R package is by Zirui Li based on code for the JCGS paper.  Zirui worked on this through the [NCSU GEARS program](https://gti.ncsu.edu/gears/) with Eric Chi as his mentor.
