@@ -95,6 +95,7 @@ for(i in 1:length(tuning)){
     School of Electrical and Information Engineering, Tianjin University
 
   - Yuan Feng
+  
     Walmart eCommerce
 
   - [Luo Xiao](https://www4.stat.ncsu.edu/~xiao/)
