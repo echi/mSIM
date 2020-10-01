@@ -12,10 +12,10 @@ get_B_ADMM(
   rank,
   alpha = 1,
   control1 = list(max.iter = 100, tol = 0.01),
-  control2 = list(ele.sparse = F, row.sparse = T, low.rank = T),
+  control2 = list(ele.sparse = FALSE, row.sparse = TRUE, low.rank = TRUE),
   select.method = "linear",
   descent.method = "bfgs",
-  plot = F
+  plot = FALSE
 )
 }
 \arguments{
@@ -48,5 +48,8 @@ A list that contains information such as the final B matrix, the training error.
 The main function of mSIM package
 }
 \examples{
-test = get.B.ADMM(Y=Y, X=X, B=B.init, lambda=0.2, rank=3, alpha=1, control1 = list(max.iter=5e1, tol=1e-5), control2=list(ele.sparse=F, row.sparse=T, low.rank=T), select.method='linear', plot=F)
+X <- scale(X_train)
+Y <- scale(Y_train)
+test = get_B_ADMM(Y=Y, X=X, lambda=0.2, rank=3, alpha=1, control1 = list(max.iter=5e1, tol=1e-5),
+control2=list(ele.sparse=FALSE, row.sparse=TRUE, low.rank=TRUE), select.method='linear', plot=FALSE)
 }

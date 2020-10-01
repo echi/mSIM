@@ -2,7 +2,6 @@
 #'
 #' @import mgcv
 #' @import MASS
-#' @import gtools
 #' @import glmnet
 #' @import Matrix
 #' @import splines
@@ -23,10 +22,13 @@
 #' @param plot whether or not plot the error during the iteration
 #' @return A list that contains information such as the final B matrix, the training error.
 #' @examples
-#' test = get.B.ADMM(Y=Y, X=X, B=B.init, lambda=0.2, rank=3, alpha=1, control1 = list(max.iter=5e1, tol=1e-5), control2=list(ele.sparse=F, row.sparse=T, low.rank=T), select.method='linear', plot=F)
+#' X <- scale(X_train)
+#' Y <- scale(Y_train)
+#' test = get_B_ADMM(Y=Y, X=X, lambda=0.2, rank=3, alpha=1, control1 = list(max.iter=5e1, tol=1e-5),
+#' control2=list(ele.sparse=FALSE, row.sparse=TRUE, low.rank=TRUE), select.method='linear', plot=FALSE)
 
 
-get_B_ADMM <- function(Y, X, B = NULL, lambda, rank, alpha=1, control1=list(max.iter=1e2, tol=1e-2), control2=list(ele.sparse=F, row.sparse=T, low.rank=T), select.method='linear', descent.method='bfgs', plot=F){
+get_B_ADMM <- function(Y, X, B = NULL, lambda, rank, alpha=1, control1=list(max.iter=1e2, tol=1e-2), control2=list(ele.sparse=FALSE, row.sparse=TRUE, low.rank=TRUE), select.method='linear', descent.method='bfgs', plot=FALSE){
 #  Y <- scale(Y)
 #  X <- scale(X)
 #  env_check()

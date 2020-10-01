@@ -1,7 +1,7 @@
 Package: mSIM
 Type: Package
 Title: Multivariate Response Single Index Model
-Version: 0.1.0
+Version: 0.1.4
 Author: c(
   person("Zirui", "Li", email = "LZRsuper666@tju.edu.cn", role = c("aut", "cre", "cph")),
   person("Yuan", "Feng", email = "yfeng8@ncsu.edu", role = "aut"),
@@ -28,7 +28,6 @@ Imports:
   splines,
   lbfgs
 Suggests:
-    doSNOW,
     knitr,
     rmarkdown
 RoxygenNote: 7.1.1
