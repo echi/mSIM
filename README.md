@@ -8,7 +8,7 @@
 
 <!-- badges: end -->
 
-This package implements the Multivariate Single Index Model(`mSIM`)
+This package implements the Multivariate Single index Model(`mSIM`)
 proposed by Feng et al. It can be formulated as following:
 
 \(\mathbf{y}_{i}=\left\{f_{1}\left(\mathbf{x}_{i}^{\top} \mathbf{B}_{1}\right), \cdots, f_{q}\left(\mathbf{x}_{i}^{\top} \mathbf{B}_{\cdot q}\right)\right\}^{\top}+\boldsymbol{\epsilon}_{i}\)
@@ -28,7 +28,7 @@ The current working version can be installed from Github:
 
 ``` r
 library(devtools)
-install_github("echi/mSIM")
+install_github("ecchi/mSIM")
 ```
 
 ## Example
@@ -37,10 +37,6 @@ We use a small dataset within our package to illustrate our package.
 
 ``` r
 library(mSIM)
-#> Warning: replacing previous import 'glmnet::na.replace' by 'gtools::na.replace'
-#> when loading 'mSIM'
-#> Warning: replacing previous import 'gtools::scat' by 'mgcv::scat' when loading
-#> 'mSIM'
 ## basic example code
 
 ## fitting the mSIM model
@@ -94,9 +90,7 @@ for(i in 1:length(tuning)){
     
     School of Electrical and Information Engineering, Tianjin University
 
-  - Yuan Feng
-  
-    Walmart eCommerce
+  - \[Yuan Feng\]
 
   - [Luo Xiao](https://www4.stat.ncsu.edu/~xiao/)
     
@@ -111,7 +105,3 @@ for(i in 1:length(tuning)){
 Yuan Feng, Luo Xiao, and Eric C. Chi, Sparse Single Index Models for
 Multivariate Responses, Journal of Computational and Graphical
 Statistics, 2020.
-
-## Notes
-
-This R package is by Zirui Li based on code for the JCGS paper.  Zirui worked on this through the [NCSU GEARS program](https://gti.ncsu.edu/gears/) with Eric Chi as his mentor.
